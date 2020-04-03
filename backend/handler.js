@@ -2,25 +2,27 @@
 
 const middy = require('middy')
 const { cors } = require('middy/middlewares')
-
+var AWS = require('aws-sdk');
 
 var handler = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+  var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+  var params = {
+    TableName: 'serverless-gfd-it1-posts-database',
+    Key: {
+      'id': { S: '200300400' }
+    },
+    ProjectionExpression: 'posts'
   };
-
-  
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
-
+  return await new Promise((resolve, reject) => {
+    ddb.getItem(params, function (err, data) {
+      if (err) {
+        console.log("Error", err);
+      } else {
+        resolve({ "M": data.Item});
+      }
+    });
+  });
+}
 
 module.exports.hello = middy(handler).use(cors())
+
