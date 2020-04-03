@@ -9,7 +9,7 @@ var handler = async event => {
   var params = {
     TableName: 'serverless-gfd-it1-posts-database',
     Key: {
-      'id': { S: '200300400' }
+      'id': { S: '1234' }
     },
     ProjectionExpression: 'posts'
   };
@@ -20,7 +20,7 @@ var handler = async event => {
       } else {
         var parse = AWS.DynamoDB.Converter.output;
 
-        resolve(parse({ "M": data.Item}));
+        resolve(parse({ "M": data.Item}).posts);
       }
     });
   });
