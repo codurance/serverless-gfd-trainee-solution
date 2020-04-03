@@ -18,7 +18,9 @@ var handler = async event => {
       if (err) {
         console.log("Error", err);
       } else {
-        resolve({ "M": data.Item});
+        var parse = AWS.DynamoDB.Converter.output;
+
+        resolve(parse({ "M": data.Item}));
       }
     });
   });
