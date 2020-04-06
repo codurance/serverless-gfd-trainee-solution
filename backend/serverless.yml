@@ -37,6 +37,9 @@ provider:
       # the specific table for the stage
       Resource:
         - "arn:aws:dynamodb:us-east-1:300563897675:table/serverless-gfd-it1-posts-database"
+
+plugins:
+  - serverless-offline
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -76,10 +79,10 @@ functions:
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
+    events:
+      - http:
+          path: posts
+          method: get
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

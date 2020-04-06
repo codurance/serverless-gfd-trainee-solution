@@ -19,8 +19,16 @@ var handler = async event => {
         console.log("Error", err);
       } else {
         var parse = AWS.DynamoDB.Converter.output;
-
-        resolve(parse({ "M": data.Item}).posts);
+        var posts = parse({ "M": data.Item}).posts
+        const response = {
+          statusCode: 200,
+          body: JSON.stringify(
+            posts,
+            null,
+            2
+          )
+        }
+        resolve(response)
       }
     });
   });
