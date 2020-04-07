@@ -6,10 +6,11 @@ var AWS = require('aws-sdk');
 
 var handler = async event => {
   var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+  var userId = event.pathParameters.user_id
   var params = {
     TableName: 'serverless-gfd-it1-posts-database',
     Key: {
-      'id': { S: '1234' }
+      'id': { S: userId }
     },
     ProjectionExpression: 'posts'
   };

@@ -81,8 +81,13 @@ functions:
 #    Check the event documentation for details
     events:
       - http:
-          path: posts
+          path: posts/{user_id}
           method: get
+          request:
+            parameters:
+              paths:
+                user_id: true
+
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
