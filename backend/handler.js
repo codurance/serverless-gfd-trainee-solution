@@ -18,7 +18,10 @@ var handler = async event => {
       if (err) {
         console.log("Error", err);
       } else {
-        resolve({ "M": data.Item});
+          resolve({
+            "statusCode": 200,
+            "body": JSON.stringify({ "M": data.Item})
+        });
       }
     });
   });
