@@ -2,7 +2,8 @@
 
 const middy = require('middy')
 const { cors } = require('middy/middlewares')
-var AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
+const parse = AWS.DynamoDB.Converter.output;
 
 var handler = async event => {
   var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
@@ -18,9 +19,10 @@ var handler = async event => {
       if (err) {
         console.log("Error", err);
       } else {
+          const posts = parse({'M': data.Item}).posts;
           resolve({
             "statusCode": 200,
-            "body": JSON.stringify({ "M": data.Item})
+            "body": JSON.stringify(posts)
         });
       }
     });
