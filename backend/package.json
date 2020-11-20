@@ -1,0 +1,13 @@
+{
+  "name": "svrless",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "aws-sdk": "^2.796.0",
+    "middy": "^0.36.0"
+  },
+  "devDependencies": {
+    "serverless": "^2.11.1",
+    "serverless-offline": "^6.8.0"
+  }
+}

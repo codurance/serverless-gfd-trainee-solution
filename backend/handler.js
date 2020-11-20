@@ -7,7 +7,7 @@ var AWS = require('aws-sdk');
 var handler = async event => {
   var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
   var params = {
-    TableName: 'serverless-gfd-it1-posts-database',
+    TableName: 'mob-programming-serverless-lau',
     Key: {
       'id': { S: '200300400' }
     },

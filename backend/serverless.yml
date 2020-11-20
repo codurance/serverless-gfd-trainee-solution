@@ -36,7 +36,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "arn:aws:dynamodb:us-east-1:300563897675:table/serverless-gfd-it1-posts-database"
+        - "arn:aws:dynamodb:us-east-1:300563897675:table/mob-programming-serverless-lau"
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -124,3 +124,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-offline
